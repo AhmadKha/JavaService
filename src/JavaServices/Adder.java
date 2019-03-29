@@ -36,19 +36,20 @@ public class Adder extends HttpServlet {
 		setAccessControlHeaders(response);
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String number1;
-		String number2;
-		//eine Default message ist 0
+		String number1 = null;
+		String number2 = null;
+		// eine Default message ist 0
 		int message = 0;
-		//wenn Parameter übergeben werden:
-		if((number1=request.getParameter("number1"))!=null && (number2=request.getParameter("number2"))!=null){
-			message= Integer.parseInt(number1)
-					+ Integer.parseInt(number2);
+		// wenn Parameter übergeben werden:
+		if ((number1 = request.getParameter("number1")) != null
+				&& (number2 = request.getParameter("number2")) != null) {
+			message = Integer.parseInt(number1) + Integer.parseInt(number2);
 		}
-		
+
 		// out.println("<html><body>");
 		out.println(message);
-		System.out.println(message);
+		System.out.println("Income: number1 = " + number1 + ", number2 = "
+				+ number2 + "\nOutput: " + message);
 		// out.println("</html></body>");
 		out.close();
 	}
@@ -69,7 +70,7 @@ public class Adder extends HttpServlet {
 
 	// Allowing CORS copied by
 	// https://www.logicbig.com/tutorials/java-ee-tutorial/java-servlet/servlet-cors.html
-	//This is supposed to be more specific for certain Origins.
+	// This is supposed to be more specific for certain Origins.
 	private void setAccessControlHeaders(HttpServletResponse resp) {
 		resp.setHeader("Access-Control-Allow-Origin", "*");
 		resp.setHeader("Access-Control-Allow-Methods", "GET");
